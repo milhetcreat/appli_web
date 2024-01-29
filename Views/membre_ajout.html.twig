@@ -1,0 +1,82 @@
+
+{% extends "index.html.twig" %}
+
+{% block section %}
+<br>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="?">Accueil</a></li>
+    <li class="breadcrumb-item"><a href="?action=mesinfos">Mon Espace</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Ajouter Utilisateur</li>
+  </ol>
+</nav>
+<br>
+<p class="h1 text-center">Ajouter un utilisateur</p>
+<br>
+<form method="post" action="index.php" class="w-50 p-3 mx-auto">
+  <!-- Email input -->
+ 
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="nom">Nom</label>
+    <input type="text" id="nom" class="form-control" name="nom" required placeholder="Nom" /> 
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="prenom">Prenom</label>
+    <input type="text" id="prenom" class="form-control" name="prenom" required placeholder="Prénom" /> 
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="anneenaissance">Année de naissance</label>
+    <input type="text" id="anneenaissance" class="form-control" name="anneenaissance" required placeholder="Année de naissance" /> 
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="idmembre">Identifiant IUT</label>
+    <input type="text" id="idmembre" class="form-control" name="idmembre" required placeholder="xxx0000a" />
+  </div>
+
+ <div class="form-group">
+    <label for="sexe">Sexe</label>
+    <select id="sexe" name="sexe" class="form-control">
+        <option name="sexe" id="sexe" value="F">Femme</option>
+        <option name="sexe" id="sexe" value="H">Homme</option>
+    </select>
+  </div>
+
+  <br>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="email">Mail de l'IUT</label>
+    <input type="text" id="email" class="form-control" name="email" required placeholder="exemple@etu.iut-tlse3.fr" />
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="telportable">Numéro de téléphone</label>
+    <input type="text" id="telportable" class="form-control" name="telportable" required placeholder="Numéro" />
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="password">Mot de passe</label>
+    <input type="password" id="password" class="form-control" name="password" required placeholder="********" />
+  </div>
+
+  <label class="form-label" for="email">Admin ?</label>
+  <filset id="grp2">
+  <div data-mdb-input-init class="form-outline mb-4"> 
+    <div class="form-check form-check-inline name="admin"">
+        <input class="form-check-input" type="radio" name="admin" id="admin" value="1" />
+        <label class="form-check-label" for="admin">Oui</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="admin" id="admin" value="0" />
+        <label class="form-check-label" for="admin">Non</label>
+    </div>
+  </div>
+  <filset>
+
+  <!-- Submit button -->
+  <button type="Signup" name="ajout-membre" value="ajout-membre" class="btn btn-dark btn-block mb-4" style="margin-left: auto; margin-right: auto; display: block;">Ajouter</button>
+
+</form>
+{% endblock %}

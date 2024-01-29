@@ -1,0 +1,39 @@
+
+{% extends "index.html.twig" %}
+
+{% block section %}
+<br>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="?">Accueil</a></li>
+    <li class="breadcrumb-item"><a href="?action=mesinfos">Mon Espace</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Ajouter Cours</li>
+  </ol>
+</nav>
+<br>
+<p class="h1 text-center">Ajouter un cours</p>
+<br>
+<form method="post" action="index.php" class="w-50 p-3 mx-auto">
+  <!-- Email input -->
+ 
+  <div class="form-outline mb-4">
+    <label for="semestre">Semestre</label>
+    <select id="semestre" name="semestre" class="form-control">
+        <option name="semestre" id="semestre" value="1">1</option>
+        <option name="semestre" id="semestre" value="2">2</option>
+        <option name="semestre" id="semestre" value="3">3</option>
+        <option name="semestre" id="semestre" value="4">4</option>
+    </select>
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="intitule">Nom du cours</label>
+    <input type="text" id="intitule" class="form-control" name="intitule" required placeholder="Cours" /> 
+  </div>
+
+
+  <!-- Submit button -->
+  <button type="submit" name="valider-ajout-cours" value="valider-ajout-cours" class="btn btn-dark btn-block mb-4" style="margin-left: auto; margin-right: auto; display: block;">Ajouter</button>
+
+</form>
+{% endblock %}

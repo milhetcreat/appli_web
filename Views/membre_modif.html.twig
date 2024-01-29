@@ -1,0 +1,70 @@
+
+{% extends "index.html.twig" %}
+
+{% block section %}
+<br>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="?">Accueil</a></li>
+    <li class="breadcrumb-item"><a href="?action=mesinfos">Mon Espace</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Modifier les informations</li>
+  </ol>
+</nav>
+<br>
+<p class="h1 text-center">Modifier les informations</p>
+<br>
+<form method="post" action="index.php" class="w-50 p-3 mx-auto">
+  <!-- Email input -->
+ 
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="nom">Nom</label>
+    <input type="text" id="nom" class="form-control" name="nom" value="{{membre.nom}}" /> 
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="prenom">Prenom</label>
+    <input type="text" id="prenom" class="form-control" name="prenom" value="{{membre.prenom}}" /> 
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="anneenaissance">Année de naissance</label>
+    <input type="text" id="anneenaissance" class="form-control" name="anneenaissance" value="{{membre.anneenaissance}}" /> 
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="idmembre">Identifiant IUT</label>
+    <input type="text" id="idmembre" class="form-control" name="idmembre" value="{{membre.idmembre}}" />
+  </div>
+
+ <div class="form-group">
+    <label for="sexe">Sexe</label>
+    <select id="sexe" name="sexe" class="form-control">
+    {% if membre.sexe == "F" %}
+        <option name="sexe" id="sexe" value="F" selected>Femme</option>
+        <option name="sexe" id="sexe" value="H">Homme</option>
+	{% else %}
+        <option name="sexe" id="sexe" value="H" selected>Homme</option>
+        <option name="sexe" id="sexe" value="F">Femme</option>
+	{% endif %} 
+    </select>
+  </div>
+
+  <br>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="email">Mail de l'IUT</label>
+    <input type="text" id="email" class="form-control" name="email" value="{{membre.email}}" />
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="telportable">Numéro de téléphone</label>
+    <input type="text" id="telportable" class="form-control" name="telportable" value="{{membre.telportable}}" />
+  </div>
+
+  <input type="hidden" id="admin" name="admin" value="{{membre.admin}}"/>
+  <input type="hidden" id="password" name="password" value="{{membre.password}}"/>
+
+  <button type="submit" name="mod_membre" value="mod_membre" class="btn btn-dark btn-block mb-4" style="margin-left: auto; margin-right: auto; display: block;">Modifier</button>
+
+</form>
+{% endblock %}

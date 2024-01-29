@@ -1,0 +1,35 @@
+
+{% extends "index.html.twig" %}
+
+{% block section %}
+<br>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="?">Accueil</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Rechercher</li>
+  </ol>
+</nav>
+  <p class="h1">Rechercher un projet<p>
+<br>
+
+<form id="motcle" method="get" action="index.php">
+    <input type="search" class="motcle form-control" placeholder="Search" aria-label="Search" name="motcle"/>
+
+  <table class="table table-hover table-sm">
+      <thead>
+          <tr>
+              <th>Titre</th>
+              <th>Description</th>
+              <th>Détails</th>
+          </tr>
+      </thead>
+      <tbody id="motscle">
+      
+      </tbody>
+  </table>
+</form>
+
+<script src="recherche.js"></script>
+
+{% endblock %}
+

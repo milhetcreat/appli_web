@@ -1,0 +1,231 @@
+{% extends "index.html.twig" %}
+{# {% extends "membre_infos_liste.html.twig" %} #}
+{% block section %}
+<br>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="?">Accueil</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Mon Espace</li>
+  </ol>
+</nav>
+<p class="h1">Mon espace utilisateur</p>
+
+<br>
+<div class="">
+   <div class="row">
+      <div class="col-md-10">
+         <p class="h3">Mes informations</p>
+      </div>
+      <div class="col-md-2 text-right">
+         <a class="btn btn-dark" href="?action=profil_modif">
+            Modifier mon profil
+         </a>
+      </div>
+   </div>
+</div>
+
+<div class="d-flex justify-content-start">
+   <div>
+      <p><strong>Nom :</strong> {{membre.nom}}</p>
+      <p><strong>Prenom :</strong> {{membre.prenom}}</p>
+      <p><strong>Année de Naissance :</strong> {{membre.anneenaissance}}</p>
+   </div>
+   <div style="margin-left:250px;">
+      <p><strong>Identifiant IUT :</strong> {{membre.idmembre}}</p>
+      <p><strong>Mail :</strong> {{membre.email}}</p>
+      <p><strong>Numéro de Téléphone :</strong> {{membre.telportable}}</p>
+   </div>
+</div>
+
+
+
+<br>
+<div class="">
+   <div class="row">
+      <div class="col-md-10">
+         <p class="h3">Mes projets</p>
+      </div>
+      <div class="col-md-2 text-right">
+         <a class="btn btn-dark" href="?action=ajout">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-square" viewBox="0 0 16 16">
+               <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+               <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>
+            Ajouter un projet
+         </a>
+      </div>
+   </div>
+</div>
+
+<table class="table table-hover table-sm"><thead>
+<tr><th>Titre</th><th>Description</th><th>Action</th></tr>
+</thead><tbody>
+{% for projet in projets %}
+      <tr>
+            <td>{{projet.titre}}</td><td class="w-50 p-3">{{projet.description}}</td>
+            <td> 
+                  <form method="post" action="index.php"> 
+                        <input type="hidden" id="id_projet" name="id_projet" value="{{projet.id_projet}}"/>
+                        <input type="hidden" id="id_cours" name="id_cours" value="{{projet.id_cours}}"/>
+
+                        <input type="submit" class="btn btn-outline-dark" name="details" value="Voir plus"/>
+                        <input type="submit" class="btn btn-outline-dark" name="valider_supp" value="Supprimer"/>  
+                        <input type="submit" class="btn btn-outline-dark" name="saisie_modif" value="Modifier"/> 
+                  </form>
+            </td>
+      </tr>
+{% endfor %}
+</tbody></table> 
+
+<br>
+
+{# si la personne est admin aficher la suite : #}
+{% if admin == 1 %}
+
+{# validation des projets #}
+
+<div class="col-md-10">
+   <p class="h3">Projets en attente de validation</p>
+</div>
+
+<table class="table table-hover table-sm"><thead>
+<tr><th>Titre</th><th>Description</th><th>Action</th></tr>
+</thead><tbody>
+{% for projet in projets_valide %}
+      <tr>
+            <td>{{projet.titre}}</td><td class="w-50 p-3">{{projet.description}}</td>
+            <td> 
+                  <form method="post" action="index.php"> 
+                        <input type="hidden" id="id_projet" name="id_projet" value="{{projet.id_projet}}"/>
+                        <input type="hidden" id="id_cours" name="id_cours" value="{{projet.id_cours}}"/>
+
+                        <input type="submit" class="btn btn-outline-dark" name="valider_" value="Valider"/>
+                        <input type="submit" class="btn btn-outline-dark" name="valider_supp" value="Supprimer"/>  
+                        <input type="submit" class="btn btn-outline-dark" name="saisie_modif" value="Modifier"/> 
+                  </form>
+            </td>
+      </tr>
+{% endfor %}
+</tbody></table>
+
+<br>
+
+{# gérer les utilisateurs #}
+<div class="">
+   <div class="row">
+      <div class="col-md-10">
+         <p class="h3">Tous les utilisateurs</p>
+      </div>
+      <div class="col-md-2 text-right">
+         <a class="btn btn-dark" href="?action=ajout-utilisateur">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-square" viewBox="0 0 16 16">
+               <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+               <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>
+            Ajouter un utilisateur
+         </a>
+      </div>
+   </div>
+</div>
+
+<table class="table table-hover table-sm"><thead>
+<tr><th>Nom</th><th>Prenom</th><th>Id_IUT</th><th>Mail</th><th>Numéro</th><th>Action</th></tr>
+</thead><tbody>
+{% for membre in membres %}
+      <tr>
+            <td>{{membre.nom}}</td><td>{{membre.prenom}}</td><td>{{membre.idmembre}}</td><td>{{membre.email}}</td><td>{{membre.telportable}}</td>
+            <td> 
+                  <form method="post" action="index.php"> 
+                        <input type="hidden" id="idmembre" name="idmembre" value="{{membre.idmembre}}"/>
+
+                        <input type="submit" class="btn btn-outline-dark" name="supp_membre" value="Supprimer"/> 
+                        <input type="submit" class="btn btn-outline-dark" name="membre_modif" value="Modifier"/>
+                  </form>
+            </td>
+      </tr>
+{% endfor %}
+</tbody></table>
+
+<br>
+
+{# gérer les cours #}
+<div class="">
+   <div class="row">
+      <div class="col-md-10">
+         <p class="h3">Tous les cours</p>
+      </div>
+      <div class="col-md-2 text-right">
+         <a class="btn btn-dark" href="?action=ajout-cours">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-square" viewBox="0 0 16 16">
+               <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+               <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>
+            Ajouter un cours
+         </a>
+      </div>
+   </div>
+</div>
+
+<table class="table table-hover table-sm"><thead>
+<tr><th>Id Cours</th><th>Semestre</th><th>Cours</th><th>Action</th></tr>
+</thead><tbody>
+{% for cours in courss %}
+      <tr>
+            <td>{{cours.id_cours}}</td><td>S{{cours.semestre}}</td><td>{{cours.intitule}}</td>
+            <td> 
+                  <form method="post" action="index.php"> 
+                        <input type="hidden" id="id_cours" name="id_cours" value="{{cours.id_cours}}"/>
+
+                        <input type="submit" class="btn btn-outline-dark" name="supp_cours" value="Supprimer"/>  
+                        <input type="submit" class="btn btn-outline-dark" name="cours_modif" value="Modifier"/>
+                  </form>
+            </td>
+      </tr>
+{% endfor %}
+</tbody></table>
+
+
+<br>
+
+{# gérer les catégories #}
+<div class="">
+   <div class="row">
+      <div class="col-md-9">
+         <p class="h3">Toutes les catégories</p>
+      </div>
+      <div class="col-md-3 text-right">
+         <a class="btn btn-dark" href="?action=ajout-categorie">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-square" viewBox="0 0 16 16">
+               <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+               <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>
+            Ajouter une catégorie
+         </a>
+      </div>
+   </div>
+</div>
+
+<table class="table table-hover table-sm"><thead>
+<tr><th>Id Catégorie</th><th>Catégorie</th><th>Action</th></tr>
+</thead><tbody>
+{% for categorie in categories %}
+      <tr>
+            <td>{{categorie.num_cat}}</td><td>{{categorie.intitule}}</td>
+            <td> 
+                  <form method="post" action="index.php"> 
+                        <input type="hidden" id="num_cat" name="num_cat" value="{{categorie.num_cat}}"/>
+
+                        <input type="submit" class="btn btn-outline-dark" name="supp_categorie" value="Supprimer"/> 
+                        <input type="submit" class="btn btn-outline-dark" name="cat_modif" value="Modifier"/>
+                  </form>
+            </td>
+      </tr>
+{% endfor %}
+</tbody></table>
+
+{% endif %} 
+
+{% endblock %}
+
+
+

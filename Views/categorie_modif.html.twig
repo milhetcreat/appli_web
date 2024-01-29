@@ -1,0 +1,30 @@
+
+{% extends "index.html.twig" %}
+
+{% block section %}
+<br>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="?">Accueil</a></li>
+    <li class="breadcrumb-item"><a href="?action=mesinfos">Mon Espace</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Modifier Catégorie</li>
+  </ol>
+</nav>
+<br>
+<p class="h1 text-center">Modifier une catégorie</p>
+<br>
+<form method="post" action="index.php" class="w-50 p-3 mx-auto">
+  <!-- Email input -->
+    <input type="hidden" id="num_cat" class="form-control" name="num_cat" value="{{categorie.num_cat}}" /> 
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="intitule">Nom de la catégorie</label>
+    <input type="text" id="intitule" class="form-control" name="intitule" value="{{categorie.intitule}}" /> 
+  </div>
+
+
+  <!-- Submit button -->
+  <button type="submit" name="modif_cat" value="modif_cat" class="btn btn-dark btn-block mb-4" style="margin-left: auto; margin-right: auto; display: block;">Ajouter</button>
+
+</form>
+{% endblock %}

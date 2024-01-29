@@ -1,0 +1,43 @@
+{% extends "menu.html.twig" %}
+
+{% block section %}
+<br>
+
+<p class="h1">Bienvenue !</P>
+
+<br>
+  <img src="./images/bannière.png" class="img-fluid" alt="bannière" />
+<br>
+
+<div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+      A quoi consiste cette application web ?
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Cette application web permet de recenser des projets. 
+      J'ai pu la développer dans le cadre de ma formation afin de développer mes compétences en backend.
+      Voilà pourquoi son intégration peut sembler modeste.
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        Avec quels langages a-t-elle était développée ?
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">L'application a été développée avec la méthodologie MDC (Model-Driven Computing), 
+      utilisant Twig comme moteur de template pour la partie frontend, 
+      et le framework CSS Bootstrap pour une expérience utilisateur optimisée. 
+      Il y a également des fonctionnalités AJAX. 
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

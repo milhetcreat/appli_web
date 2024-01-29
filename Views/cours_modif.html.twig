@@ -1,0 +1,57 @@
+
+{% extends "index.html.twig" %}
+
+{% block section %}
+<br>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="?">Accueil</a></li>
+    <li class="breadcrumb-item"><a href="?action=mesinfos">Mon Espace</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Modifier Cours</li>
+  </ol>
+</nav>
+<br>
+<p class="h1 text-center">Modifier un cours</p>
+<br>
+<form method="post" action="index.php" class="w-50 p-3 mx-auto">
+  <!-- Email input -->
+ 
+  <div class="form-outline mb-4">
+    <label for="semestre">Semestre</label>
+    <select id="semestre" name="semestre" class="form-control">
+        {% if cours.semestre == "1" %}
+        <option name="semestre" id="semestre" value="1" selected>1</option>
+        <option name="semestre" id="semestre" value="2">2</option>
+        <option name="semestre" id="semestre" value="3">3</option>
+        <option name="semestre" id="semestre" value="4">4</option>
+        {% elseif cours.semestre == "2" %}
+        <option name="semestre" id="semestre" value="1">1</option>
+        <option name="semestre" id="semestre" value="2" selected>2</option>
+        <option name="semestre" id="semestre" value="3">3</option>
+        <option name="semestre" id="semestre" value="4">4</option>
+        {% elseif cours.semestre == "3" %}
+        <option name="semestre" id="semestre" value="1">1</option>
+        <option name="semestre" id="semestre" value="2">2</option>
+        <option name="semestre" id="semestre" value="3" selected>3</option>
+        <option name="semestre" id="semestre" value="4">4</option>
+        {% else %}
+        <option name="semestre" id="semestre" value="1">1</option>
+        <option name="semestre" id="semestre" value="2">2</option>
+        <option name="semestre" id="semestre" value="3">3</option>
+        <option name="semestre" id="semestre" value="4" selected>4</option>
+	    {% endif %} 
+    </select>
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="intitule">Nom du cours</label>
+    <input type="text" id="intitule" class="form-control" name="intitule" value="{{cours.intitule}}" /> 
+  </div>
+    <input type="hidden" id="id_cours" class="form-control" name="id_cours" value="{{cours.id_cours}}" /> 
+
+
+  <!-- Submit button -->
+  <button type="submit" name="mod_cours" value="mod_cours" class="btn btn-dark btn-block mb-4" style="margin-left: auto; margin-right: auto; display: block;">Modifier</button>
+
+</form>
+{% endblock %}

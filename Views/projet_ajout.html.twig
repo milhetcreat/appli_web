@@ -1,0 +1,125 @@
+
+{% extends "index.html.twig" %}
+
+{% block section %}
+<br>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="?">Accueil</a></li>
+    <li class="breadcrumb-item"><a href="?action=mesinfos">Mon Espace</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Ajouter Projet</li>
+  </ol>
+</nav>
+<br>
+
+<p class="h1 text-center">Nouveau Projet</p>
+
+<br>
+
+<form method="post" action="index.php" enctype="multipart/form-data">
+
+  <div class="row mb-4">
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <label class="form-label" for="titre">Titre du Projet</label>
+        <input type="text" id="titre" class="form-control" name="titre" required placeholder="Entrer le titre" />
+      </div>
+    </div>
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <label class="form-label" for="id_cours">Dans quel cours a-t-il été réalisé ?</label>
+        <select name="id_cours" class="form-control">
+        {% for cours in courss %}
+          <option value="{{cours.id_cours}}">S{{cours.semestre}} - {{cours.intitule}}</option>
+        {% endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="description">Description</label>
+    <textarea type="text" id="description" class="form-control" name="description" required placeholder="Ecrire la description du projet" rows="4"></textarea>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col">
+      <label class="form-label" for="lien_source">Lien vers la source</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3 ">https://</span>
+        </div>
+        <input type="text" class="form-control" id="lien_source" name="lien_source" aria-describedby="basic-addon3">
+      </div>
+    </div>
+    <div class="col">
+      <label class="form-label" for="lien_demo">Lien vers la démo</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">https://</span>
+        </div>
+        <input type="text" class="form-control" id="lien_demo" name="lien_demo" aria-describedby="basic-addon3">
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+
+    <div class="col">
+      <label class="form-label" for="id_tag">Outils utilisés</label>
+      {% for tag in tags %}
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tag[]" value="{{tag.id_tag}}" id="id_tag">
+        <label class="form-check-label" for="id_tag">
+          {{tag.intitule}}
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <div class="col">
+      <label class="form-label" for="num_cat">Catégories</label>
+      {% for categorie in categories %}
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="cat[]" value="{{categorie.num_cat}}" id="num_cat">
+        <label class="form-check-label" for="num_cat">
+          {{categorie.intitule}}
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="col">
+      <label class="form-label" for="idmembre">Contributeurs</label>
+      {% for contributeur in contributeurs %}
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="membre[]" value="{{contributeur.idmembre}}" id="idmembre">
+        <label class="form-check-label" for="idmembre">
+          {{contributeur.nom}} {{contributeur.prenom}}
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+
+
+  </div>
+
+  <br>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+
+    <label class="form-label" for="img">Image</label>
+    <br>
+
+    <input type="file" id="img" name="img" accept="image/png, image/jpeg" />
+
+    <input type="hidden" id="img" name="MAXFILESIZE" value="10000" />
+  </div>
+  <input type="hidden" id="valide" class="form-control" name="valide" value="0" /> 
+
+
+  <!-- Submit button -->
+    <button type="submit" name="valider_ajout" value="valider-ajout-cours" class="btn btn-dark btn-block mb-4" style="margin-left: auto; margin-right: auto; display: block;">Ajouter le projet</button>
+</form>
+
+{% endblock %}

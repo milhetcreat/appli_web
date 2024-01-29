@@ -1,0 +1,126 @@
+{% extends "index.html.twig" %}
+
+{% block section %}
+<br>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="?">Accueil</a></li>
+    <li class="breadcrumb-item"><a href="?action=liste">Projets</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Projet</li>
+  </ol>
+</nav>
+<br>
+<div class="container">
+    <div class="row">
+        <!-- Colonne gauche pour l'image -->
+        <div class="col-md-6">
+            <img src="https://webmmi.iut-tlse3.fr/~mll4873a/appli_prof/Sitewebv1(POO%20avec%20templates)/{{projet.img}}"/>
+        </div>
+        <!-- Colonne droite pour les informations -->
+        <div class="col-md-6">
+            <p class="h1">{{projet.titre}}</p>
+            <p class="h4">S{{cours.semestre}} - {{cours.intitule}}</p>
+            <br>
+            <p>{{projet.description}}</p>
+            <a href="{{projet.lien_source}}">Lien vers le projet</a>
+            <br>
+            <a href="{{projet.lien_demo}}">Lien vers la démo</a>
+            <br>
+            <br>
+            <div class="d-flex align-items-center">
+              <p class="h5">Outils utilisés :</p>
+              {% for tag in tags %}
+              <button type="button" class="btn btn-light btn-xs" style="margin-left:20px;" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
+                  <path d="M3 2v4.586l7 7L14.586 9l-7-7zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586z"/>
+                  <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1z"/>
+                </svg> {{tag.intitule}}
+              </button>
+              {% endfor %}
+            </div>
+            <br>
+            <div class="d-flex align-items-center">
+              <p class="h5">Catégorie :</p>
+              {% for categorie in categories %}
+              <button type="button" class="btn btn-light btn-xs" style="margin-left:20px;" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
+                  <path d="M3 2v4.586l7 7L14.586 9l-7-7zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586z"/>
+                  <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1z"/>
+                </svg> {{categorie.intitule}}
+              </button>
+              {% endfor %}
+            </div>
+            <br>
+            <div class="d-flex align-items-center">
+              <p class="h5">Contributeurs :</p>
+              {% for membre in membres %}
+              <button type="button" class="btn btn-light btn-xs" style="margin-left:20px;" disabled>
+                @{{membre.prenom}} {{membre.nom}}
+              </button>
+              {% endfor %}
+            </div>
+          </div>
+    </div>
+</div>
+
+{% if acces == "oui" %}
+<section >
+  <div class="container my-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-12 col-lg-10 col-xl-8">
+        <div class="card">
+          <div class="card-body">
+            {% for commentaire in commentaires %}
+            <div class="d-flex flex-start align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#999999" class="bi bi-person-circle" viewBox="0 0 16 16" style="margin-right:10px;">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                </svg>
+                <div>
+                    <h6 class="fw-bold text-dark mb-1">{{ commentaire.prenom }} {{ commentaire.nom }}</h6>
+                </div>
+            </div>
+            <p class="mt-3 mb-4 pb-2">{{ commentaire.description }}</p>
+            {% endfor %}
+            
+          </div>
+          <form method="post" action="index.php" class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+            <div class="d-flex flex-start w-100">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="32" fill="#999999" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+              </svg>
+              <div class="form-outline w-100">
+                <textarea class="form-control" name="description" id="description" rows="4"
+                  style="background: #fff;" required placeholder="Message"></textarea>
+              </div>
+              <input type="hidden" id="id_projet" name="id_projet" value="{{projet.id_projet}}"/>
+              <input type="hidden" id="idmembre" name="idmembre" value="{{utilisateur.idmembre}}"/>
+            </div>
+            <div class="float-end mt-2 pt-1">
+              <input type="submit" class="btn btn-dark btn-sm" name="valider-ajout-commentaire" value="Poster"></input>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %} 
+
+<br>
+
+<style>
+img{
+  height:600px;
+}
+
+@media (max-width: 600px){
+img{
+  height:400px;
+  align-items:center;
+}
+}
+</style>
+
+{% endblock %}

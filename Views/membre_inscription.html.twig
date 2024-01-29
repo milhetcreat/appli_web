@@ -1,0 +1,73 @@
+
+{% extends "index.html.twig" %}
+
+{% block section %}
+<br>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="?">Accueil</a></li>
+    <li class="breadcrumb-item active" aria-current="page">S'inscrire</li>
+  </ol>
+</nav>
+<br>
+<p class="h1 text-center">Créer un compte</p>
+<br>
+<form method="post" action="index.php" class="w-50 p-3 mx-auto">
+  <!-- Email input -->
+ 
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="nom">Nom</label>
+    <input type="text" id="nom" class="form-control" name="nom" required placeholder="Entrer votre nom" /> 
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="prenom">Prenom</label>
+    <input type="text" id="prenom" class="form-control" name="prenom" required placeholder="Entrer votre prénom" /> 
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="anneenaissance">Année de naissance</label>
+    <input type="text" id="anneenaissance" class="form-control" name="anneenaissance" required placeholder="Entrer votre année de naissance" /> 
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="idmembre">Identifiant IUT</label>
+    <input type="text" id="idmembre" class="form-control" name="idmembre" required placeholder="xxx0000a" />
+  </div>
+
+ <div class="form-group">
+    <label for="sexe">Votre sexe</label>
+    <select id="sexe" name="sexe" class="form-control">
+        <option name="sexe" id="sexe" value="F">Femme</option>
+        <option name="sexe" id="sexe" value="H">Homme</option>
+    </select>
+  </div>
+
+  <br>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="email">Mail de l'IUT</label>
+    <input type="email" id="email" class="form-control" name="email" required placeholder="exemple@etu.iut-tlse3.fr" />
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="telportable">Numéro de téléphone</label>
+    <input type="text" id="telportable" class="form-control" name="telportable" required placeholder="Entrer votre numéro" />
+  </div>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="password">Mot de passe</label>
+    <input type="password" id="password" class="form-control" name="password" required placeholder="********" />
+  </div>
+
+  <input class="form-check-input" type="hidden" name="admin" id="admin" value="0" />
+
+  <!-- Submit button -->
+  <button type="Signup" name="inscription" value="inscription" class="btn btn-dark btn-block mb-4" style="margin-left: auto; margin-right: auto; display: block;">S'inscrire</button>
+
+  <!-- Register buttons -->
+  <div class="text-center">
+    <p>J'ai déjà un compte <a href="?action=login">Se connecter</a></p>
+  </div>
+</form>
+{% endblock %}
