@@ -15,7 +15,5 @@ class TagsController {
 		$this->twig = $twig;
 	}
 
-
-  
 }
 ?>
